@@ -5,18 +5,13 @@ import json
 client = storage.Client()
 bucket = client.get_bucket('sms-noughts-and-crosses')
 
-FileExists = False
-try:
-    blob = bucket.get_blob('game.json')
-    FileExists = True
-except:
-    print("File not present")
+blob = bucket.get_blob('game.json')
+FileExists = True
 
 filename = 'tempgame.json'
 
 def receiveMessage(request):
-    if FileExists:
-        blob.download_to_filename(filename)
+    blob.download_to_filename(filename)
 
     gameData = {}
     gameData = json.load(filename)
