@@ -1,0 +1,37 @@
+def move(board):
+    #board = 3x3 array
+    #[[1,2,3]]
+    #[[4,5,6]]
+    #[[7,8,9]]
+    #
+    #0:0,1,2
+    #1:0,1,2
+    #2:0,1,2
+    #
+    freeSpaces = []
+    for row in freeSpaces:
+        for elem in row:
+            if (elem.isnumeric()) :
+                freeSpaces.append(elem)
+    
+
+    if ((((board[0][1] == 'X') and (board[0][2] == 'X')) or ((board[1][0] == 'X') and (board[2][0] == 'X')) or ((board[2][2] == 'X') and (board[1][1] == 'X'))) and ('1' in freeSpaces)):
+        return 1
+    elif ((((board[0][0] == 'X') and (board[0][2] == 'X')) or ((board[1][1] == 'X') and (board[2][1] == 'X'))) and ('2' in freeSpaces)):
+        return 2
+    elif ((((board[0][0] == 'X') and (board[0][1] == 'X')) or ((board[1][2] == 'X') and (board[2][2] == 'X')) or ((board[2][0] == 'X') and (board[1][1] == 'X'))) and ('3' in freeSpaces)):
+        return 3
+    elif ((((board[1][1] == 'X') and (board[1][2] == 'X')) or ((board[0][0] == 'X') and (board[2][0] == 'X'))) and ('4' in freeSpaces)):
+        return 4
+    elif ((((board[1][0] == 'X') and (board[1][2] == 'X')) or ((board[0][1] == 'X') and (board[2][1] == 'X')) or ((board[2][2] == 'X') and (board[0][0] == 'X')) or ((board[0][2] == 'X') and (board[2][0] == 'X'))) and ('5' in freeSpaces)):
+        return 5
+    elif (((board[1][0] == 'X') and (board[1][1] == 'X')) or ((board[0][2] == 'X') and (board[2][2] == 'X'))) and ('6' in freeSpaces)):
+        return 6
+    elif ((((board[2][1] == 'X') and (board[2][2] == 'X')) or ((board[0][0] == 'X') and (board[1][0] == 'X')) or ((board[0][2] == 'X') and (board[1][1] == 'X'))) and ('7' in freeSpaces)):
+        return 7
+    elif ((((board[2][0] == 'X') and (board[2][2] == 'X')) or ((board[0][1] == 'X') and (board[1][1] == 'X'))) and ('8' in freeSpaces)):
+        return 8
+    elif ((((board[2][0] == 'X') and (board[2][1] == 'X')) or ((board[0][2] == 'X') and (board[1][2] == 'X')) or ((board[0][0] == 'X') and (board[1][1] == 'X'))) and ('9' in freeSpaces)):
+        return 9
+    else: 
+        return freeSpaces[0]
