@@ -3,7 +3,7 @@ from google.cloud import storage
 import json
 
 client = storage.Client()
-bucket = client.get_bucket('gs://sms-noughts-and-crosses')
+bucket = client.get_bucket('sms-noughts-and-crosses')
 
 FileExists = False
 try:
