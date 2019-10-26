@@ -9,7 +9,8 @@ FileExists = False
 try:
     blob = bucket.get_blob('game.json')
     FileExists = True
-    
+except:
+    print("File not present")
 
 filename = 'tempgame.json'
 
