@@ -37,10 +37,11 @@ def receiveMessage(request):
         return str("You cannot play a move with this location, it has already been taken!")
 
     if intent == "help":
-        return str("To start a game, say 'Start'.")
+        return str("To start a game, say 'Start'. When it is your turn, enter the number where you wish to play.")
     elif intent == "new":
         gameData['gameboard'] = newGame()
         writeStatus(gameData['gameboard'])
+        return str(printBoard['gamedata'])
     elif intent == "move":
         gameData['gameboard'] = makeMove(int(body), gameData['gameboard'])
         gameData['gameboard'] = AIMove(gameData['gameboard'])
@@ -51,6 +52,8 @@ def receiveMessage(request):
             return str("You win!")
         elif result == 'O':
             return str("You lose! Better luck next time!")
+        else:
+            return str(printBoard(gameData['gameboard']))
     else:
        return("This input was incorrect, please try again.", gameData['phone']) 
     
@@ -58,6 +61,11 @@ def newGame():
     gameboard = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
 
     return gameboard
+
+def printBoard(board):
+    return (board[0][0] + "|" + board[0][1] + "|" + board[0][2] + "\n" + "-----" + "\n" + 
+            board[1][0] + "|" + board[1][1] + "|" + board[1][2] + "\n" + "-----" + "\n" +
+            board[2][0] + "|" + board[2][1] + "|" + board[2][2])
 
 def makeMove(cell, board):
     for i in range(3):
