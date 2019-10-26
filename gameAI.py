@@ -25,7 +25,7 @@ def move(board):
         return 4
     elif ((((board[1][0] == 'X') and (board[1][2] == 'X')) or ((board[0][1] == 'X') and (board[2][1] == 'X')) or ((board[2][2] == 'X') and (board[0][0] == 'X')) or ((board[0][2] == 'X') and (board[2][0] == 'X'))) and ('5' in freeSpaces)):
         return 5
-    elif (((board[1][0] == 'X') and (board[1][1] == 'X')) or ((board[0][2] == 'X') and (board[2][2] == 'X'))) and ('6' in freeSpaces)):
+    elif ((((board[1][0] == 'X') and (board[1][1] == 'X')) or ((board[0][2] == 'X') and (board[2][2] == 'X'))) and ('6' in freeSpaces)):
         return 6
     elif ((((board[2][1] == 'X') and (board[2][2] == 'X')) or ((board[0][0] == 'X') and (board[1][0] == 'X')) or ((board[0][2] == 'X') and (board[1][1] == 'X'))) and ('7' in freeSpaces)):
         return 7
