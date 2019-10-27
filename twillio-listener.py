@@ -44,8 +44,8 @@ def receiveMessage(request):
         writeStatus(gameData['gameboard'])
         response.message(printBoard(gameData['gameboard']))
     elif intent == "move":
-        gameData['gameboard'] = makeMove(int(body), gameData['gameboard'])
-        gameData['gameboard'] = AIMove(gameData['gameboard'])
+        gameData['gameboard'] = makeMove(int(body), gameData['gameboard'], 'X')
+        gameData['gameboard'] = makeMove(AIMove(gameData['gameboard']), gameData['gameboard'], 'O')
         writeStatus(gameData['gameboard'])
         result = isWin(gameData['gameboard'])
 
@@ -66,15 +66,15 @@ def newGame():
     return gameboard
 
 def printBoard(board):
-    return (board[0][0] + "|" + board[0][1] + "|" + board[0][2] + "\n" + "-----" + "\n" + 
-            board[1][0] + "|" + board[1][1] + "|" + board[1][2] + "\n" + "-----" + "\n" +
+    return (board[0][0] + "|" + board[0][1] + "|" + board[0][2] + "\n" + "--------" + "\n" + 
+            board[1][0] + "|" + board[1][1] + "|" + board[1][2] + "\n" + "--------" + "\n" +
             board[2][0] + "|" + board[2][1] + "|" + board[2][2])
 
-def makeMove(cell, board):
+def makeMove(cell, board, icon):
     for i in range(3):
         for j in range(3):
-            if board[i][j] == cell:
-                cell = 'X'
+            if board[i][j] == str(cell):
+                board[i][j] = icon
 
     return board
 
