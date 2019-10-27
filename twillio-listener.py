@@ -31,15 +31,18 @@ def receiveMessage(request):
     
     intent = identifyIntent(body)
 
+    response = MessagingResponse()
+
     if intent == 'move' and (gameData['gameboard'] == 'X' or gameData['gameboard'] == 'O'):
-        return str("You cannot play a move with this location, it has already been taken!")
+        response.message("You cannot play a move with this location, it has already been taken!")
+        return str(response)
 
     if intent == "help":
-        return str("To start a game, say 'Start'. When it is your turn, enter the number where you wish to play.")
+        response.message("To start a game, say 'Start'. When it is your turn, enter the number where you wish to play.")
     elif intent == "new":
         gameData['gameboard'] = newGame()
         writeStatus(gameData['gameboard'])
-        return str(printBoard(gameData['gameboard']))
+        response.message(printBoard(gameData['gameboard']))
     elif intent == "move":
         gameData['gameboard'] = makeMove(int(body), gameData['gameboard'])
         gameData['gameboard'] = AIMove(gameData['gameboard'])
@@ -47,14 +50,16 @@ def receiveMessage(request):
         result = isWin(gameData['gameboard'])
 
         if result == 'X':
-            return str("You win!")
+            response.message("You win!")
         elif result == 'O':
-            return str("You lose! Better luck next time!")
+            response.message("You lose! Better luck next time!")
         else:
-            return str(printBoard(gameData['gameboard']))
+            response.message(printBoard(gameData['gameboard']))
     else:
-       return("This input was incorrect, please try again.") 
+       response.message("This input was incorrect, please try again.") 
     
+    return str(response)
+
 def newGame():
     gameboard = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
 
