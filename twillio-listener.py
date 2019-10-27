@@ -53,7 +53,7 @@ def receiveMessage(request):
         else:
             return str(printBoard(gameData['gameboard']))
     else:
-       return("This input was incorrect, please try again.", gameData['phone']) 
+       return("This input was incorrect, please try again.") 
     
 def newGame():
     gameboard = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
