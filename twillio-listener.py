@@ -39,7 +39,7 @@ def receiveMessage(request):
     elif intent == "new":
         gameData['gameboard'] = newGame()
         writeStatus(gameData['gameboard'])
-        return str(printBoard['gamedata'])
+        return str(printBoard(gameData['gameboard']))
     elif intent == "move":
         gameData['gameboard'] = makeMove(int(body), gameData['gameboard'])
         gameData['gameboard'] = AIMove(gameData['gameboard'])
@@ -75,7 +75,7 @@ def makeMove(cell, board):
 
 def AIMove(board):
     freeSpaces = []
-    for row in freeSpaces:
+    for row in board:
         for elem in row:
             if (elem.isnumeric()) :
                 freeSpaces.append(elem)
