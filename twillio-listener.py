@@ -31,7 +31,7 @@ def receiveMessage(request):
     
     intent = identifyIntent(body)
 
-    if intent == 'move' and (gameData['gameboard'] == 'X' or gameData['gameboard']):
+    if intent == 'move' and (gameData['gameboard'] == 'X' or gameData['gameboard'] == 'O'):
         return str("You cannot play a move with this location, it has already been taken!")
 
     if intent == "help":
