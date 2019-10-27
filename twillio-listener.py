@@ -1,20 +1,23 @@
 from twilio.twiml.messaging_response import MessagingResponse
 from google.cloud import storage
 import json
+import tempfile
 
 client = storage.Client()
 bucket = client.get_bucket('sms-noughts-and-crosses')
 
 blob = bucket.get_blob('game.json')
-FileExists = True
 
-filename = 'tempgame.json'
+_, temp = tempfile.mkstemp(suffix=".json")
+
+filename = temp
+blob.download_to_filename(filename)
 
 def receiveMessage(request):
-    blob.download_to_filename(filename)
 
     gameData = {}
-    gameData = json.load(filename)
+    with open(filename, 'r') as f:
+        gameData = json.load(f)
 
     request_json = request.get_json()
     request_args = request.args
