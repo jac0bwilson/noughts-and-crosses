@@ -54,7 +54,17 @@ def receiveMessage(request):
         elif result == 'O':
             response.message(printBoard(gameData['gameboard']) + "\nYou lose! Better luck next time!")
         else:
-            response.message(printBoard(gameData['gameboard']))
+            numeric = 0
+            for i in range(3):
+                for j in range(3):
+                    if (gameData['gameboard'].isnumeric()):
+                        numeric += 1
+            
+            if numeric == 0:
+                response.message(printBoard(gameData['gameboard']) + "\nIt's a draw!")
+            else:
+                response.message(printBoard(gameData['gameboard']))
+
     else:
        response.message("This input was incorrect, please try again.") 
     
