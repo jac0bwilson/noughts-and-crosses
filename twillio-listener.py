@@ -55,9 +55,10 @@ def receiveMessage(request):
             response.message(printBoard(gameData['gameboard']) + "\nYou lose! Better luck next time!")
         else:
             numeric = 0
+            board = gameData['gameboard']
             for i in range(3):
                 for j in range(3):
-                    if (gameData['gameboard'].isnumeric()):
+                    if (board[i][j].isnumeric()):
                         numeric += 1
             
             if numeric == 0:
