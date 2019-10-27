@@ -50,9 +50,9 @@ def receiveMessage(request):
         result = isWin(gameData['gameboard'])
 
         if result == 'X':
-            response.message("You win!")
+            response.message(printBoard(gameData['gameboard']) + "\nYou win!")
         elif result == 'O':
-            response.message("You lose! Better luck next time!")
+            response.message(printBoard(gameData['gameboard']) + "\nYou lose! Better luck next time!")
         else:
             response.message(printBoard(gameData['gameboard']))
     else:
